@@ -35,3 +35,4 @@ for gnuplotFile in $(ls "${figDir}" | grep ".${gnuplotFileExt}"); do
     done
     echo "${strToWrite}" >> "${depFile}"
 done
+echo "Wrote: ${depFile}"

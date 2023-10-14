@@ -8,7 +8,7 @@ GNUPLOT_FIGS = $(patsubst %.plt,%.pdf,$(GNUPLOT_SCRPTS))
 all: $(GNUPLOT_DEP) somedocument
 
 $(GNUPLOT_DEP): dep.sh $(GNUPLOT_SCRPTS)
-	./$< $@
+	@./$< $@
 
 somedocument: $(GNUPLOT_FIGS)
 

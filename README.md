@@ -13,7 +13,7 @@ All other files in the repository are for demonstration purposes.
 
 ## Limitations
 
-The Bash script *dep.sh* uses regular expressions to search for the names of data files used for plotting within each Gnuplot script. *dep.sh* currently fails to produce accurate dependencies in the following situations:
+The Bash script *dep.sh* uses regular expressions to search for the names of data files used for plotting within each Gnuplot script. *dep.sh* currently fails to produce the correct dependencies in the following situations:
 
 1. There is a file name containing `"` or `'` (e.g. `"data1".dat`).
 2. A file name NOT used for plotting appears as part of a comment and is surrounded by `"` or `'` (e.g. `# ... 'data5.dat'...`)
