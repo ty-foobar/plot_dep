@@ -20,8 +20,8 @@ depFile="$1"
 for plotFile in $(ls "${figDir}" | grep ".${plotFileExt}"); do
     baseName="${plotFile%${plotFileExt}}" # Bash string manipulation
 
-    # suppress newline with -n; no trailing space after ':'
-    echo -n "${figDir}/${baseName}${figFileExt}:" >> "${depFile}"
+    # suppress newline with -n
+    echo -n "${figDir}/${baseName}${figFileExt}: " >> "${depFile}"
 
     # extended regex with -E; only print matching with -o; matches "hoge.dat" or 'hoge.dat'
     dataFiles=$(grep -Eo "[\"'][^\"']+\.${dataFileExt}[\"']" "${figDir}/${plotFile}")
@@ -29,7 +29,7 @@ for plotFile in $(ls "${figDir}" | grep ".${plotFileExt}"); do
     # remove quotation marks with sed; remove duplicates with sort -u
     dataFiles=$(echo "${dataFiles}" | sed "s/[\"']//g" | sort -u)
 
-    strToWrite=""
+    strToWrite="${figDir}/${plotFile}"
     for dataFile in ${dataFiles}; do
         strToWrite="${strToWrite} ${figDir}/${dataFile}"
     done
