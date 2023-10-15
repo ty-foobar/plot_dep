@@ -2,7 +2,13 @@
 
 ## Summary
 
-The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts where file names are surrounded by either `"` or `'` (such as in gnuplot and Python). It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
+The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts where file names are surrounded by either `"` or `'` (such as in gnuplot and Python). The rule assumes that each plotting script produces a single figure with the same base name. For example:
+
+```
+%.pdf: %.plt
+```
+
+It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
 
 This repository contains other files for a demonstration using gnuplot scripts.
 
