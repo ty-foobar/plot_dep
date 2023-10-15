@@ -18,6 +18,7 @@ fi
 depFile="$1"
 > "${depFile}" # clear contents of file
 for plotFile in $(ls "${figDir}" | grep ".${plotFileExt}"); do
+
     # extended regex with -E; only print matching with -o; matches "hoge.dat" or 'hoge.dat'
     dataFiles=$(grep -Eo "[\"'][^\"']+\.${dataFileExt}[\"']" "${figDir}/${plotFile}")
 
