@@ -2,13 +2,10 @@
 
 ## Summary
 
-The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts where file names are surrounded by either `"` or `'` (such as in gnuplot and Python). The rule assumes that each plotting script produces a single figure with the same base name. For example:
+The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts such as gnuplot and Python scripts. It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers. *dep.sh* will work for most scripts (see [Limitations](https://github.com/ty-foobar/plot_dep/edit/main/README.md#limitations)) meeting the following conditions:
 
-```
-%.pdf: %.plt
-```
-
-It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
+1. File names in the scripts are placed between either `"` or `'`.
+2. Each script produces a single figure with the same base name. As a pattern rule, this would look like `%.pdf: %.plt`.
 
 This repository contains other files for a demonstration using gnuplot scripts.
 
@@ -27,10 +24,16 @@ The Bash script *dep.sh* uses regular expressions to search for the names of dat
 
 1. File names contain string substitutions (e.g. `sprintf("data%d.dat",1)`).
 2. File names contain `"` or `'` (e.g. `"data1".dat`).
-3. File names NOT used for plotting appear as part of comments and are surrounded by `"` or `'` (e.g. `# ... 'data5.dat'...`).
+3. File names NOT used for plotting appear as part of comments and are placed between `"` or `'` (e.g. `# ... 'data5.dat'...`).
 
-Regarding the 3rd limitation, the following comments will work:
+Regarding the 3rd limitation, comments such as the following will work:
 
 - `# ... ".dat"...` or `# ... '.dat'...` as file names with an empty base name will not match.
 - `# ... "data1.dat"...` or `# ... 'data1.dat'...` when *data1.dat* is used for plotting within the script.
-- `# ... data5.dat...` or `# ... <data5.dat>...`, where file names are not surrounded by `"` or `'`.
+- `# ... data5.dat...` or `# ... <data5.dat>...`, where file names are not placed between `"` or `'`.
+
+---
+
+## License
+
+This software is licensed under the MIT License (see [LICENSE](https://github.com/ty-foobar/plot_dep/blob/main/LICENSE)).
