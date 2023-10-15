@@ -2,7 +2,7 @@
 
 ## Summary
 
-The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts where file names are surrounded by either `"` or `'`, such as in gnuplot and Python. It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
+The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts where file names are surrounded by either `"` or `'` (such as in gnuplot and Python). It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
 
 This repository contains other files for a demonstration using gnuplot scripts.
 
@@ -25,6 +25,6 @@ The Bash script *dep.sh* uses regular expressions to search for the names of dat
 
 Regarding the 3rd limitation, the following comments will work:
 
-- `# ... ".dat"...` or `# ... '.dat'...` as *dep.sh* will not match file names with an empty base name.
+- `# ... ".dat"...` or `# ... '.dat'...` as file names with an empty base name will not match.
 - `# ... "data1.dat"...` or `# ... 'data1.dat'...` when *data1.dat* is used for plotting within the script.
 - `# ... data5.dat...` or `# ... <data5.dat>...`, where file names are not surrounded by `"` or `'`.
