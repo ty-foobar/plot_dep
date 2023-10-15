@@ -2,7 +2,7 @@
 
 ## Summary
 
-The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts such as gnuplot and Python scripts. It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers. *dep.sh* will work for most scripts (see [Limitations](https://github.com/ty-foobar/plot_dep#limitations)) meeting the following conditions:
+The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies of plotting scripts (such as gnuplot and Python scripts) on the files containing the plot data. It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers. *dep.sh* will work for most scripts (see [Limitations](https://github.com/ty-foobar/plot_dep#limitations)) meeting the following conditions:
 
 1. File names in the scripts are placed between either `"` or `'`.
 2. Each script produces a single figure with the same base name. As a pattern rule, this would look like `%.pdf: %.plt`.
