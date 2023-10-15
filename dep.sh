@@ -4,7 +4,7 @@
 # edit this ----
 
 figDir="fig"
-gnuplotFileExt="plt"
+plotFileExt="plt"
 dataFileExt="dat"
 figFileExt="pdf"
 
@@ -17,14 +17,14 @@ if [[ $# -ne 1 ]]; then
 fi
 depFile="$1"
 > "${depFile}" # clear contents of file
-for gnuplotFile in $(ls "${figDir}" | grep ".${gnuplotFileExt}"); do
-    baseName="${gnuplotFile%${gnuplotFileExt}}" # Bash string manipulation
+for plotFile in $(ls "${figDir}" | grep ".${plotFileExt}"); do
+    baseName="${plotFile%${plotFileExt}}" # Bash string manipulation
 
     # suppress newline with -n; no trailing space after ':'
     echo -n "${figDir}/${baseName}${figFileExt}:" >> "${depFile}"
 
     # extended regex with -E; only print matching with -o; matches "hoge.dat" or 'hoge.dat'
-    dataFiles=$(grep -Eo "[\"'][^\"']+\.${dataFileExt}[\"']" "${figDir}/${gnuplotFile}")
+    dataFiles=$(grep -Eo "[\"'][^\"']+\.${dataFileExt}[\"']" "${figDir}/${plotFile}")
 
     # remove quotation marks with sed; remove duplicates with sort -u
     dataFiles=$(echo "${dataFiles}" | sed "s/[\"']//g" | sort -u)

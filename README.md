@@ -2,24 +2,29 @@
 
 ## Summary
 
-The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for gnuplot (or gnuplot-style) scripts, where file names are surrounded by either `"` or `'`. It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
+The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies for plotting scripts where file names are surrounded by either `"` or `'`, such as in gnuplot and Python. It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
 
-All other files in the repository are for demonstration purposes.
+This repository contains other files for a demonstration using gnuplot scripts.
 
 ## Usage
 
-1. Open *dep.sh* and edit the lines surrounded by the "edit this" comments.
-2. Run `make`.
+- Using the demo files:
+    1. Run `make`.
+
+- General usage:
+    1. Open *dep.sh* and edit the lines surrounded by the "edit this" comments.
+    2. Run `./dep.sh <dep file name>`.
 
 ## Limitations
 
-The Bash script *dep.sh* uses regular expressions to search for the names of data files used for plotting within each gnuplot script. *dep.sh* currently fails to produce the correct dependencies in the following cases:
+The Bash script *dep.sh* uses regular expressions to search for the names of data files used for plotting within each script. *dep.sh* currently fails to produce the correct dependencies in the following cases:
 
-1. There is a file name containing `"` or `'` (e.g. `"data1".dat`).
-2. A file name NOT used for plotting appears as part of a comment and is surrounded by `"` or `'` (e.g. `# ... 'data5.dat'...`).
+1. File names contain string substitutions (e.g. `sprintf("data%d.dat",1)`).
+2. File names contain `"` or `'` (e.g. `"data1".dat`).
+3. File names NOT used for plotting appear as part of comments and are surrounded by `"` or `'` (e.g. `# ... 'data5.dat'...`).
 
-Regarding the 2nd limitation, the following comments will work:
+Regarding the 3rd limitation, the following comments will work:
 
 - `# ... ".dat"...` or `# ... '.dat'...` as *dep.sh* will not match file names with an empty base name.
-- `# ... "data1.dat"...` or `# ... 'data1.dat'...` when *data1.dat* is used for plotting in the gnuplot script.
+- `# ... "data1.dat"...` or `# ... 'data1.dat'...` when *data1.dat* is used for plotting within the script.
 - `# ... data5.dat...` or `# ... <data5.dat>...`, where file names are not surrounded by `"` or `'`.
