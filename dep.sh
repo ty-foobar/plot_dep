@@ -18,10 +18,10 @@ fi
 depFile="$1"
 > "${depFile}" # clear contents of file
 
-# only grep non-hidden files ending in, for example, ".plt"
+# only grep non-hidden files ending in, e.g., ".plt"
 for plotFile in $(ls "${figDir}" | grep "\.${plotFileExt}\$"); do
 
-    # extended regex with -E; only print matching with -o; matches "hoge.dat" or 'hoge.dat'
+    # extended regex with -E; only print matching with -o; matches, e.g., "hoge.dat" or 'hoge.dat'
     dataFiles=$(grep -Eo "[\"'][^\"']+\.${dataFileExt}[\"']" "${figDir}/${plotFile}")
 
     # remove quotation marks with sed; remove duplicates with sort -u
