@@ -1,6 +1,6 @@
 # plot_dep
 
-## Summary
+## Overview
 
 The Bash script *dep.sh* outputs a rule for GNU Make describing the dependencies of plotting scripts such as gnuplot and Python scripts. It is similar in effect to what the `-MM` option achieves for `gcc` and `g++` compilers.
 
@@ -17,7 +17,7 @@ fig: src data1 data2 data3 ...
 
 This repository contains other files for a demonstration using gnuplot scripts.
 
-## Usage
+## Instructions
 
 - Using the demo files:
     1. Run `make`.
