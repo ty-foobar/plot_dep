@@ -31,8 +31,8 @@ for plotFile in $(ls "${figDir}" | grep "\.${plotFileExt}\$"); do
     for dataFile in ${dataFiles}; do
         prereq="${prereq} ${figDir}/${dataFile}"
     done
-    baseName="${plotFile%${plotFileExt}}" # Bash string manipulation
-    target="${figDir}/${baseName}${figFileExt}"
+    baseName="${plotFile%.${plotFileExt}}" # Bash string manipulation
+    target="${figDir}/${baseName}.${figFileExt}"
     echo "${target}: ${prereq}" >> "${depFile}"
 done
 echo "Wrote: ${depFile}"
