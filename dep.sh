@@ -10,11 +10,25 @@ figFileExt="pdf"
 
 # ---- edit this
 
+check_args() {
+    numArgs="$1"
+    if [[ ${numArgs} -ne 1 ]]; then
+        echo "Usage: ./dep.sh <dep file name>"
+        exit 1
+    fi
+}
 
-if [[ $# -ne 1 ]]; then
-    echo "Usage: ./dep.sh <dep file name>"
-    exit 1
-fi
+check_dir() {
+    dir_="$1"
+    if [ ! -d "${dir_}" ]; then
+        echo "ERROR: Dir. '${dir_}' does not exist"
+        exit 1
+    fi
+}
+
+check_args "$#"
+check_dir "${figDir}"
+
 depFile="$1"
 > "${depFile}" # clear contents of file
 
