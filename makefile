@@ -16,6 +16,6 @@ $(GNUPLOT_FIGS): %.pdf: %.plt
 	@cd $(DIR_FIG); gnuplot $(notdir $<)
 
 clean:
-	rm -f $(GNUPLOT_DEP) $(GNUPLOT_FIGS)
+	rm -f $(GNUPLOT_DEP) $(DIR_FIG)/*.pdf
 
 -include $(GNUPLOT_DEP)
